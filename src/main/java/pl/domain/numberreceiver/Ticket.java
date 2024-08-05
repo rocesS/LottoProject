@@ -1,7 +1,10 @@
 package pl.domain.numberreceiver;
 
+import lombok.Builder;
+
+import java.time.LocalDateTime;
 import java.util.Set;
 
-//encja bazy danych
-public record Ticket(String ticketId, java.time.LocalDateTime drawDate, Set<Integer> numbersFromUser) {
+@Builder
+record Ticket(String hash, Set<Integer> numbers, LocalDateTime drawDate) {
 }
