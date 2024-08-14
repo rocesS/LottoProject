@@ -89,6 +89,10 @@ public class NumberReceiverFacade {
                 .build();
     }
 
+    public LocalDateTime retrieveNextDrawDate() {
+        return drawDateGenerator.getNextDrawDate();
+    }
+
 
 
 }
