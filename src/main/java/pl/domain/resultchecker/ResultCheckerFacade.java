@@ -5,7 +5,7 @@ import pl.domain.numbergenerator.WinningNumbersGeneratorFacade;
 import pl.domain.numbergenerator.dto.WinningNumbersDto;
 import pl.domain.numberreceiver.NumberReceiverFacade;
 import pl.domain.numberreceiver.dto.TicketDto;
-import pl.domain.resultchecker.dto.PlayerDto;
+import pl.domain.resultchecker.dto.PlayersDto;
 import pl.domain.resultchecker.dto.ResultDto;
 
 import java.util.List;
@@ -19,22 +19,22 @@ public class ResultCheckerFacade {
     PlayerRepository playerRepository;
     WinnersRetriever winnerGenerator;
 
-    public PlayerDto generateWinners() {
+    public PlayersDto generateWinners() {
         List<TicketDto> allTicketsByDate = numberReceiverFacade.retrieveAllTicketsByNextDrawDate();
         List<Ticket> tickets = ResultCheckerMapper.mapFromTicketDto(allTicketsByDate);
         WinningNumbersDto winningNumbersDto = winningNumbersGeneratorFacade.generateWinningNumbers();
         Set<Integer> winningNumbers = winningNumbersDto.getWinningNumbers();
         if (winningNumbers == null || winningNumbers.isEmpty()) {
-            return PlayerDto.builder()
+            return PlayersDto.builder()
                     .message("Winners failed to retrieve")
                     .build();
         }
 
         List<Player> players = winnerGenerator.retreivePlayers(tickets, winningNumbers);
         playerRepository.saveAll(players);
-        return PlayerDto.builder()
+        return PlayersDto.builder()
                 .results(ResultCheckerMapper.mapPlayersResults(players))
-                .message("Winner succeeded to retrieve")
+                .message("Winners succeeded to retrieve")
                 .build();
         }
 
