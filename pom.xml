@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.5</version>
+        <version>2.7.8</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.example</groupId>
@@ -19,8 +19,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <assertj-core.version>3.23.1</assertj-core.version>
         <junit-jupiter-engine.version>5.9.1</junit-jupiter-engine.version>
-        <lombok.version>1.18.30</lombok.version>
+        <lombok.version>1.18.22</lombok.version>
         <mockito-core.version>4.9.0</mockito-core.version>
+        <testcontainers.version>1.17.4</testcontainers.version>
+        <wiremock-jre8.verssion>2.35.0</wiremock-jre8.verssion>
+
+
+
     </properties>
 
     <dependencies>
@@ -57,6 +62,38 @@
             <version>${mockito-core.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- test containers -->
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${testcontainers.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
+            <version>${testcontainers.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>mongodb</artifactId>
+            <version>${testcontainers.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- test WireMock -->
+
+        <dependency>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock-jre8-standalone</artifactId>
+            <version>${wiremock-jre8.verssion}</version>
+            <scope>test</scope>
+        </dependency>
+
+
     </dependencies>
 
     <build>
