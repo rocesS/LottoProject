@@ -6,7 +6,7 @@ Scenario:
 
 Application requirements:
 
-🔹 Player provides 6 numbers.
+🔹 Player/User enters six numbers to be entered into the draw
 
 🔸 Numbers must be in the range from 1 to 99.
 
