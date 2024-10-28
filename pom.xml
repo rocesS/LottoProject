@@ -23,9 +23,6 @@
         <mockito-core.version>4.9.0</mockito-core.version>
         <testcontainers.version>1.17.4</testcontainers.version>
         <wiremock-jre8.version>2.35.0</wiremock-jre8.version>
-
-
-
     </properties>
 
     <dependencies>
@@ -90,8 +87,6 @@
             <version>${wiremock-jre8.version}</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
 
     <build>
