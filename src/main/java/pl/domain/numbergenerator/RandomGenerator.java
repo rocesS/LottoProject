@@ -1,24 +1,30 @@
 package pl.domain.numbergenerator;
 
-import java.security.SecureRandom;
+import lombok.AllArgsConstructor;
+
 import java.util.HashSet;
 import java.util.Set;
 
+@AllArgsConstructor
 class RandomGenerator implements RandomNumberGenerable {
 
     private static final int LOWER_BAND = 1;
     private static final int UPPER_BAND = 99;
-    private static final int RANDOM_NUMBER_BOUND = (UPPER_BAND - LOWER_BAND) + 1;
 
-    private final SecureRandom secureRandom = new SecureRandom();
+    private final OneRandomNumberFetcher client;
 
     public Set<Integer> generateSixRandomNumbers() {
         Set<Integer> winningNumbers = new HashSet<>();
-        while (winningNumbers.size() < 6) {
-            int preparedRandomNumber = secureRandom.nextInt(RANDOM_NUMBER_BOUND) + LOWER_BAND;
-            winningNumbers.add(preparedRandomNumber);
+        while (isAmountOfNumbersLowerThanSix(winningNumbers)) {
+            OneRandomNumberResponseDto randomNumberResponseDto = client.retrieveOneRandomNumber(LOWER_BAND, UPPER_BAND);
+            int randomNumber = randomNumberResponseDto.number();
+            winningNumbers.add(randomNumber);
         }
         return winningNumbers;
+    }
+
+    private boolean isAmountOfNumbersLowerThanSix(Set<Integer> winningNumbers) {
+        return winningNumbers.size() < 6;
     }
 }
 
