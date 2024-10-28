@@ -6,8 +6,7 @@ Scenario:
 
 Application requirements:
 
-🔹 Player/User enters six numbers to be entered into the draw
-
+🔹 Customer/User provides six numbers that take part in the draw.
 🔸 Numbers must be in the range from 1 to 99.
 
 🔹 Numbers cannot be repeated.
