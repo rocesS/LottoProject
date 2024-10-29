@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import pl.domain.numbergenerator.dto.WinningNumbersDto;
 import pl.domain.numberreceiver.NumberReceiverFacade;
 
-import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,12 +19,12 @@ public class WinningNumbersGeneratorFacadeTest {
 
     private final WinningNumbersRepository winningNumbersRepository = new WinningNumbersRepositoryTestImpl();
     NumberReceiverFacade numberReceiverFacade = mock(NumberReceiverFacade.class);
-    private final OneRandomNumberFetcher fetcher = new SecureRandomOneNumberFetcher();
+
 
     //given
     @Test
     public void should_return_set_of_required_size() {
-        RandomNumberGenerable generator = new RandomGenerator(fetcher);
+        RandomNumberGenerable generator = new WinningNumberGeneratorTestImpl();
         when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
         WinningNumbersGeneratorFacade numberGenerator = new NumberGeneratorConfiguration().createForTest(generator, winningNumbersRepository, numberReceiverFacade);
         //when
@@ -37,7 +36,7 @@ public class WinningNumbersGeneratorFacadeTest {
     @Test
     public void should_return_set_of_required_size_within_required_range() {
         //given
-        RandomNumberGenerable generator = new RandomGenerator(fetcher);
+        RandomNumberGenerable generator = new WinningNumberGeneratorTestImpl();
         when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
         WinningNumbersGeneratorFacade numbersGeneratorFacade = new NumberGeneratorConfiguration().createForTest(generator, winningNumbersRepository, numberReceiverFacade);
         //when

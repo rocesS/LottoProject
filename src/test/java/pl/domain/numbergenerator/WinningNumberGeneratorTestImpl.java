@@ -15,7 +15,9 @@ public class WinningNumberGeneratorTestImpl implements RandomNumberGenerable {
     }
 
     @Override
-    public Set<Integer> generateSixRandomNumbers() {
-        return generatedNumbers;
+    public SixRandomNumbersDto generateSixRandomNumbers() {
+        return SixRandomNumbersDto.builder()
+                .numbers(generatedNumbers)
+                .build();
     }
 }
