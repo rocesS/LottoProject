@@ -2,7 +2,7 @@ package pl.domain.numbergenerator;
 
 import java.util.Set;
 
-class WinningNumbersValidator {
+class WinningNumberValidator {
 
     private final static int LOWER_BAND = 1;
     private final static int UPPER_BAND = 99;
