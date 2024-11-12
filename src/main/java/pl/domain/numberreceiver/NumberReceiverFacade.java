@@ -8,11 +8,11 @@ klient dostaje informacje o dacie losowanie
 klient dostaje informacje o swoim unikalnym identyfikatorze losowanie
 
  */
+
 import lombok.AllArgsConstructor;
 import pl.domain.numberreceiver.dto.NumberReceiverResponseDto;
 import pl.domain.numberreceiver.dto.TicketDto;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -29,12 +29,11 @@ public class NumberReceiverFacade {
     private final TicketRepository ticketRepository;
 
     public NumberReceiverResponseDto inputNumbers(Set<Integer> numbersFromUser) {
-        List<ValidationResult> validationResultsList = numberValidator.validate(numbersFromUser);
-        if (!validationResultsList.isEmpty()) {
-            String resultMessage = numberValidator.createResulMessage();
+        List<ValidationResult> validationResultList = numberValidator.validate(numbersFromUser);
+        if (!validationResultList.isEmpty()) {
+            String resultMessage = numberValidator.createResultMessage();
             return new NumberReceiverResponseDto(null, resultMessage);
         }
-
         LocalDateTime drawDate = drawDateGenerator.getNextDrawDate();
 
         String hash = hashGenerator.getHash();
@@ -92,7 +91,5 @@ public class NumberReceiverFacade {
     public LocalDateTime retrieveNextDrawDate() {
         return drawDateGenerator.getNextDrawDate();
     }
-
-
 
 }

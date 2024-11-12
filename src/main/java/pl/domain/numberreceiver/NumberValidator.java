@@ -34,7 +34,7 @@ class NumberValidator {
                 .allMatch(number -> number >= MIN_VALUE_NUMBER_FROM_USER && number <= MAX_VALUE_NUMBER_FROM_USER);
     }
 
-    String createResulMessage() {
+    String createResultMessage() {
         return this.errors
                 .stream()
                 .map(validationResult -> validationResult.info)

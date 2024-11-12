@@ -10,21 +10,25 @@ import java.util.Set;
 @AllArgsConstructor
 public class WinningNumbersGeneratorFacade {
 
-    private final RandomNumberGenerable winningNumberGenerator;
-    private final WinningNumbersValidator winningNumbersValidator;
+    private final RandomNumberGenerable randomGenerable;
+    private final WinningNumberValidator winningNumberValidator;
     private final WinningNumbersRepository winningNumbersRepository;
     private final NumberReceiverFacade numberReceiverFacade;
+    private final WinningNumbersGeneratorFacadeConfigurationProperties properties;
+
 
     public WinningNumbersDto generateWinningNumbers() {
         LocalDateTime nextDrawDate = numberReceiverFacade.retrieveNextDrawDate();
-        Set<Integer> winningNumbers = winningNumberGenerator.generateSixRandomNumbers();
-        winningNumbersValidator.validate(winningNumbers);
-        winningNumbersRepository.save(WinningNumbers.builder()
-                .winningNumbers(winningNumbers)
-                .date(nextDrawDate)
-                .build());
+        SixRandomNumbersDto sixRandomNumbersDto = randomGenerable.generateSixRandomNumbers(properties.count(), properties.lowerBand(), properties.upperBand());
+        Set<Integer> winningNumbers = sixRandomNumbersDto.numbers();
+        winningNumberValidator.validate(winningNumbers);
+//        winningNumbersRepository.save(WinningNumbers.builder()
+//                .winningNumbers(winningNumbers)
+//                .date(nextDrawDate)
+//                .build());
         return WinningNumbersDto.builder()
                 .winningNumbers(winningNumbers)
+                .date(nextDrawDate)
                 .build();
     }
 

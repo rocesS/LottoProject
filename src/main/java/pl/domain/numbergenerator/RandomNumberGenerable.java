@@ -1,8 +1,7 @@
 package pl.domain.numbergenerator;
 
-import java.util.Set;
 
 public interface RandomNumberGenerable {
 
-    Set<Integer> generateSixRandomNumbers();
+    SixRandomNumbersDto generateSixRandomNumbers(int count, int lowerBand, int upperBand);
 }
