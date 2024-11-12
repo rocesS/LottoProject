@@ -5,10 +5,12 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public interface WinningNumbersRepository extends MongoRepository<WinningNumbers, String> {
+public interface WinningNumbersRepository  {
 
     Optional<WinningNumbers> findNumbersByDate(LocalDateTime date);
 
     boolean existsByDate(LocalDateTime nextDrawDate);
+
+    WinningNumbers save (WinningNumbers winningNumbers);
 
 }

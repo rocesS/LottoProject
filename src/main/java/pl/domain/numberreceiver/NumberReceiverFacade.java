@@ -8,6 +8,7 @@ klient dostaje informacje o dacie losowanie
 klient dostaje informacje o swoim unikalnym identyfikatorze losowanie
 
  */
+
 import lombok.AllArgsConstructor;
 import pl.domain.numberreceiver.dto.NumberReceiverResponseDto;
 import pl.domain.numberreceiver.dto.TicketDto;
@@ -90,7 +91,5 @@ public class NumberReceiverFacade {
     public LocalDateTime retrieveNextDrawDate() {
         return drawDateGenerator.getNextDrawDate();
     }
-
-
 
 }
